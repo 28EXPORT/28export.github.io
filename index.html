@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28EXPORT - Import & Export Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Garamond&display=swap');
+
+        body {
+            font-family: 'Garamond', serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #e0e7ff;
+            overflow-x: hidden;
+        }
+        .top-bar {
+            background-color: #1e3a8a;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar h1 {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            font-size: 24px;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #fff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .contact-info a {
+            display: flex;
+            align-items: center;
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .contact-info a img {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+        }
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* This makes sure the logo and nav are spaced out */
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            max-width: 120px;
+            height: auto;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+            justify-content: center; /* Center the navigation items */
+        }
+        nav ul li {
+            margin: 0 15px; /* Adjust margin for spacing */
+        }
+        nav ul li a {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #2563eb;
+        }
+        h2, h4 {
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            color: #1e3a8a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        h3 {
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            color: #fff;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        p {
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .commodity p {
+            color: #fff;
+        }
+        img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        main {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        section {
+            margin-bottom: 60px;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+        .commodities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .commodity {
+            background-color: rgba(30, 58, 138, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            background-blend-mode: multiply;
+            position: relative;
+            overflow: hidden;
+        }
+        .commodity:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            z-index: 1;
+            opacity: 0.8;
+        }
+        .commodity:nth-child(1):before { background-image: url('images/icumsa.jpeg'); }
+        .commodity:nth-child(2):before { background-image: url('images/soybean.jpeg'); }
+        .commodity:nth-child(3):before { background-image: url('images/corn.jpg'); }
+        .commodity:nth-child(4):before { background-image: url('images/edible-oil.jpeg'); }
+        .commodity:nth-child(5):before { background-image: url('images/beans.jpg'); }
+        .commodity:nth-child(6):before { background-image: url('images/red-lentil.jpg'); }
+        .commodity:nth-child(7):before { background-image: url('images/lemon.jpg'); }
+        .commodity:nth-child(8):before { background-image: url('images/ginger.jpg'); }
+        .commodity:nth-child(9):before { background-image: url('images/cashew.jpg'); }
+        .commodity:nth-child(10):before { background-image: url('images/cement.jpg'); }
+        .commodity:nth-child(11):before { background-image: url('images/wine.jpg'); }
+        .commodity > * {
+            position: relative;
+            z-index: 2;
+        }
+        .commodity a {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .commodity a:hover {
+            color: #60a5fa;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, textarea {
+            margin-bottom: 15px;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 12px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1d4ed8;
+        }
+        @media screen and (max-width: 768px) {
+            .logo-nav {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+            .commodities-grid {
+                grid-template-columns: 1fr;
+            }
+            .top-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        .about-us {
+            font-family: 'Garamond', serif;
+            color: #444;
+        }
+        .about-us h4 {
+            font-size: 20px;
+            color: #1e3a8a;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .map-image {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .modal-content img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Past Performance Modal Styles */
+        #pastPerformanceModal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.6); /* Dark background */
+            justify-content: center; 
+            align-items: center; 
+        }
+        .modal-content {
+            background-color: #fefefe; 
+            margin: 15% auto; 
+            padding: 20px; 
+            border: 1px solid #888; 
+            width: 80%; 
+            max-width: 500px; 
+            text-align: center; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .modal-content img {
+            width: 100px; 
+            height: auto; 
+            margin-bottom: 20px; 
+        }
+        .close {
+            color: #aaa; 
+            float: right; 
+            font-size: 28px; 
+            font-weight: bold; 
+        }
+        .close:hover,
+        .close:focus {
+            color: black; 
+            text-decoration: none; 
+            cursor: pointer; 
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the modal
+            var modal = document.getElementById("myModal");
+            var pastPerformanceModal = document.getElementById("pastPerformanceModal");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+            var closePastPerformanceModal = document.getElementById("closePastPerformanceModal");
+
+            // Show the initial modal
+            modal.style.display = "flex";
+
+            // Show the past performance modal
+            document.getElementById("pastPerformanceLink").onclick = function() {
+                pastPerformanceModal.style.display = "flex";
+            };
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+                document.querySelector('.top-bar h1').style.opacity = '1';
+            }
+
+            // When the user clicks on <span> (x), close the past performance modal
+            closePastPerformanceModal.onclick = function() {
+                pastPerformanceModal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    document.querySelector('.top-bar h1').style.opacity = '1';
+                }
+                if (event.target == pastPerformanceModal) {
+                    pastPerformanceModal.style.display = "none";
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="images/logo.jpeg" alt="28EXPORT Logo">
+            <h2>WELCOME TO 28EXPORT</h2>
+            <p>"Trust and delivery are the cornerstones of our success, ensuring your business thrives in a connected world."</p>
+        </div>
+    </div>
+
+    <!-- Past Performance Modal -->
+    <div id="pastPerformanceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closePastPerformanceModal">&times;</span>
+            <img src="images/logo.jpeg" alt="28EXPORT Logo">
+            <h2><strong>ACCESS PAST PERFORMANCE DATA</strong></h2>
+            <p><strong>UNAUTHORIZED ACCESS IS PROHIBITED.</strong> To gain access, please follow the instructions below.</p>
+            <p>To ensure the security and confidentiality of our financial transactions, access to our past performance data is restricted to users who have established a verified payment instrument.</p>
+            <p><strong>Please provide Proof of Funds (POF) using one of the following secure banking methods:</strong></p>
+            <ul>
+                <li><strong>Standby Letter of Credit (SBLC)</strong></li>
+                <li><strong>Documentary Letter of Credit (DLC)</strong></li>
+                <li><strong>MT103 Transfer</strong></li>
+            </ul>
+            <p><strong>Required Proof of Funds Methods:</strong></p>
+            <ul>
+                <li><strong>MT799</strong>: Secure message indicating the readiness and availability of funds.</li>
+                <li><strong>MT199</strong>: Standard message confirming bank acknowledgment of funds.</li>
+                <li><strong>Bank Comfort Letter (BCL) + Account Transaction Verification (ATV)</strong>: Letter from your bank confirming funds, with transaction verification.</li>
+                <li><strong>RAW + ATV</strong>: Detailed account statement with transaction verification.</li>
+            </ul>
+            <p>Please coordinate with your financial institution to provide the necessary documentation. Once verified, you will gain access to our past performance data.</p>
+        </div>
+    </div>
+
+    <header>
+        <div class="top-bar">
+            <h1>WELCOME TO 28EXPORT</h1>
+            <div class="contact-info">
+                <a href="mailto:jimmeypro@28export.com">
+                    <img src="images/email.jpeg" alt="Email Icon">jimmeypro@28export.com
+                </a>
+                <a href="https://wa.me/971557513006">
+                    <img src="images/whatsapp.jpeg" alt="WhatsApp Icon">+971 557513006
+                </a>
+            </div>
+        </div>
+        <div class="logo-nav">
+            <img src="images/logo.jpeg" alt="28EXPORT Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#home">HOME</a></li>
+                    <li><a href="#commodities">COMMODITIES</a></li>
+                    <li><a href="#investment">INVESTMENT OPPORTUNITIES</a></li>
+                    <li><a href="#monetization">SBLC & DLC MONETIZATION</a></li>
+                    <li><a href="#kyc">KYC</a></li>
+                    <li><a href="#contact">CONTACT US</a></li>
+                    <li><a href="#certification">CERTIFICATIONS</a></li>
+                    <li><a href="#past-performance" id="pastPerformanceLink">PAST PERFORMANCE</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section id="home">
+            <div class="about-us">
+                <h4>ABOUT US</h4>
+                <p>Welcome to 28 Export, a global leader in the import and export industry, dedicated to connecting markets and facilitating trade worldwide. With six years of robust experience, we have established ourselves as a trusted name in the international trade arena, operating across key global locations including Brazil, Australia, Dubai, Tanzania, South Africa, and Saudi Arabia.</p>
+                
+                <h4>OUR MISSION</h4>
+                <p>At 28 Export, our mission is to bridge the gap between markets by providing seamless import and export solutions. We pride ourselves on our ability to deliver high-quality commodities efficiently and reliably, ensuring our clients' supply chains remain uninterrupted and their businesses thrive.</p>
+                
+                <h4>OUR NETWORK</h4>
+                <p>While we are not a manufacturing company, we have cultivated an extensive network of manufacturing units that fall under our umbrella, allowing us to offer a diverse range of commodities. Our strategic alliances with top-tier manufacturers ensure that we deliver only the best, adhering to the highest standards of quality.</p>
+                
+                <h4>WHY CHOOSE 28 EXPORT?</h4>
+                <ul>
+                    <li><strong>GLOBAL PRESENCE:</strong> With offices strategically located in major trade hubs, we have the logistical capabilities to manage and expedite shipments across continents.</li>
+                    <li><strong>EXPERTISE AND EXPERIENCE:</strong> Our team of seasoned professionals brings a wealth of knowledge and expertise in international trade.</li>
+                    <li><strong>RELIABILITY AND INTEGRITY:</strong> We are committed to transparency, integrity, and ethical practices.</li>
+                    <li><strong>INNOVATIVE SOLUTIONS:</strong> We leverage cutting-edge technology and industry insights to offer tailored solutions that enhance efficiency.</li>
+                    <li><strong>CUSTOMER-CENTRIC APPROACH:</strong> We prioritize our clients' needs and deliver exceptional service.</li>
+                </ul>
+                
+                <h4>OUR COMMITMENT TO QUALITY</h4>
+                <p>Quality is the cornerstone of our operations. We maintain rigorous quality control processes to ensure that every product we handle meets the highest industry standards.</p>
+                
+                <h4>SUSTAINABILITY AND RESPONSIBILITY</h4>
+                <p>At 28 Export, we are dedicated to sustainable business practices. Our efforts in promoting sustainability reflect our responsibility towards future generations.</p>
+                
+                <h4>JOIN US</h4>
+                <p>Whether you're looking to expand your business or explore new markets, 28 Export is your trusted partner in global trade. Reach out today and discover how we can support your business on its journey to success.</p>
+            </div>
+        </section>
+
+        <!-- Important Note -->
+        <section id="important-note">
+            <h2>IMPORTANT NOTICE</h2>
+            <p>Please note that we require a Letter of Intent (LOI) and Know Your Customer (KYC) documentation before engaging in any business transactions. This is to ensure compliance and secure trading. Thank you for your understanding and cooperation.</p>
+        </section>
+
+        <section id="commodities">
+            <h2>OUR COMMODITIES</h2>
+            <div class="commodities-grid">
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20ICUMSA%20Sugar%20-%20Price%20and%20Procedure.">
+                        <h3>ICUMSA 45, 600-1200, 150</h3>
+                        <img src="images/icumsa.jpeg" alt="ICUMSA Sugar">
+                        <p>Sourced directly from Brazil, our ICUMSA sugar grades are globally recognized for their purity and quality. Essential in industries such as food processing and pharmaceuticals, we provide detailed specifications and quality certifications to ensure compliance with international standards.</p>
+                    </a>
+                </div>
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20Soybean%20-%20Price%20and%20Procedure.">
+                        <h3>SOYBEAN (GMO AND NON-GMO)</h3>
+                        <img src="images/soybean.jpeg" alt="Soybean">
+                        <p>Originating from Brazil, our high-quality soybeans, both GMO and non-GMO, are sourced from reputable farms. They are suitable for food production, animal feed, and various industrial uses. We prioritize sustainability and quality to meet global market demands.</p>
+                    </a>
+                </div>
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20Corn%20-%20Price%20and%20Procedure.">
+                        <h3>YELLOW AND WHITE CORN (GMO AND NON-GMO)</h3>
+                        <img src="images/corn.jpg" alt="Corn">
+                        <p>Our corn products from Brazil are known for their nutritional value and versatility. Available in both GMO and non-GMO varieties, our corn is used in food industries, biofuel production, and other applications. We are committed to providing high-quality corn that meets the diverse needs of our clients worldwide.</p>
+                    </a>
+                </div>
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20Edible%20Oil%20-%20Price%20and%20Procedure.">
+                        <h3>EDIBLE OIL (SUNFLOWER AND SOYBEAN, REFINED AND CRUDE)</h3>
+                        <img src="images/edible-oil.jpeg" alt="Edible Oil">
+                        <p>Our edible oils, including sunflower and soybean, are sourced from Tanzania. Available in both refined and crude forms, our oils are known for their purity, nutritional benefits, and suitability for culinary and industrial applications. We adhere to stringent quality standards to deliver exceptional products.</p>
+                    </a>
+                </div>
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20Beans%20-%20Price%20and%20Procedure.">
+                        <h3>KIDNEY BEAN AND SUGAR BEAN</h3>
+                        <img src="images/beans.jpg" alt="Beans">
+                        <p>Our kidney and sugar beans are sourced from Tanzania, ensuring exceptional quality and taste. These beans are popular in various cuisines and valued for their nutritional content. We provide comprehensive product descriptions and packaging options to suit different market requirements.</p>
+                    </a>
+                </div>
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20Red%20Lentil%20-%20Price%20and%20Procedure.">
+                        <h3>RED LENTIL</h3>
+                        <img src="images/red-lentil.jpg" alt="Red Lentil">
+                        <p>Our red lentils are a staple in many diets, known for their health benefits and culinary versatility. We supply high-quality red lentils that meet international standards, available in various packaging options to accommodate different customer preferences.</p>
+                    </a>
+                </div>
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20Lemon%20-%20Price%20and%20Procedure.">
+                        <h3>LEMON</h3>
+                        <img src="images/lemon.jpg" alt="Lemon">
+                        <p>We supply fresh and juicy lemons that are perfect for culinary uses, beverages, and health products. Our lemons are sourced from the finest farms to ensure premium quality and taste.</p>
+                    </a>
+                </div>
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20Ginger%20-%20Price%20and%20Procedure.">
+                        <h3>GINGER</h3>
+                        <img src="images/ginger.jpg" alt="Ginger">
+                        <p>Our ginger is known for its rich flavor and health benefits. Perfect for culinary and medicinal purposes, we ensure our ginger meets the highest quality standards.</p>
+                    </a>
+                </div>
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20Cashew%20-%20Price%20and%20Procedure.">
+                        <h3>CASHEW</h3>
+                        <img src="images/cashew.jpg" alt="Cashew">
+                        <p>We offer top-quality cashews, ideal for snacking and culinary uses. Our cashews are carefully selected to provide the best taste and nutritional value.</p>
+                    </a>
+                </div>
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20Cement%20-%20Price%20and%20Procedure.">
+                        <h3>CEMENT FROM VIETNAM</h3>
+                        <img src="images/cement.jpg" alt="Cement">
+                        <p>Our cement from Vietnam is renowned for its strength and durability, suitable for various construction projects. We ensure consistent quality to meet international building standards.</p>
+                    </a>
+                </div>
+                <div class="commodity">
+                    <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20Premium%20Wine%20-%20Price%20and%20Procedure.">
+                        <h3>PREMIUM WINE</h3>
+                        <img src="images/wine.jpg" alt="Premium Wine">
+                        <p>Our premium wine from South Africa is available in both bulk and bottle formats. Renowned for its rich flavors and quality, it is perfect for connoisseurs and casual drinkers alike. We ensure that our wine meets the highest standards of excellence.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="investment">
+            <h2>INVESTMENT OPPORTUNITIES</h2>
+            <img src="images/investment.jpg" alt="Investment">
+            <p>28EXPORT offers lucrative investment opportunities in the commodities sector. Our investment options are designed to provide stable returns and growth potential, tailored to meet different risk appetites. We provide expert guidance and detailed market analysis to help investors make informed decisions. Whether you're looking to diversify your portfolio or tap into new markets, our team is here to support you every step of the way.</p>
+        </section>
+
+        <section id="monetization">
+            <h2>SBLC & DLC MONETIZATION</h2>
+            <img src="images/monetization.png" alt="Monetization">
+            <p>Our SBLC and DLC monetization services provide a secure and efficient method to leverage financial instruments. We partner with reputable banks to ensure optimal outcomes for our clients. Our transparent process includes a detailed overview of documentation requirements, timelines, and potential returns. Our experienced team provides full support and guidance throughout the transaction.</p>
+            <p>If you are interested in obtaining a BG or SBLC or DLC from a top bank, please <a href="https://wa.me/971557513006?text=I'm%20interested%20in%20obtaining%20a%20BG,%20SBLC,%20or%20DLC." style="color: #2563eb; text-decoration: none;">contact us</a> for more details.</p>
+        </section>
+
+        <section id="kyc">
+            <h2>KYC REQUIREMENTS</h2>
+            <img src="images/kyc.png" alt="KYC">
+            <p>KYC (Know Your Customer) is a critical component in international trade, ensuring compliance and security for all transactions. At 28EXPORT, we have implemented a comprehensive KYC process that requires documentation from buyers, SBLC/DLC issuers, and investment parties. This process helps us maintain the highest levels of integrity and trust in our business operations, protecting both our clients and our company.</p>
+        </section>
+
+        <section id="contact">
+            <h2>CONTACT US</h2>
+            <address>
+                <p><a href="mailto:jimmeypro@28export.com">Email: jimmeypro@28export.com</a></p>
+                <p><a href="https://wa.me/971557513006">Phone: +971 5575 13006</a></p>
+                <p>Address: DUBAI, BRAZIL, TANZANIA, SAUDI ARABIA, SOUTH KOREA</p>
+            </address>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <button type="submit">Send</button>
+            </form>
+        
+            <h3>Our Offices</h3>
+            <div class="office-locations">
+                <div class="office">
+                    <h4>28 EXPORT - Dubai</h4>
+                    <p>312 Business Bay, Suite 501, Dubai, UAE</p>
+                    <img src="images/dubai office.jpeg" alt="Dubai Office">
+                </div>
+                <div class="office">
+                    <h4>28 EXPORT - Brazil</h4>
+                    <p>Avenida Paulista, 158 - Bela Vista, São Paulo, SP, 01310-200, Brazil</p>
+                    <img src="images/brazil office.jpeg" alt="Brazil Office">
+                </div>
+                <div class="office">
+                    <h4>28 EXPORT - Tanzania</h4>
+                    <p>Ohio Street, Plot 654, Dar es Salaam, Tanzania</p>
+                    <img src="images/tanzania office.jpeg" alt="Tanzania Office">
+                </div>
+                <div class="office">
+                    <h4>28 EXPORT - Saudi Arabia</h4>
+                    <p>King Fahd Road, Al Olaya, Riyadh 12212, Saudi Arabia</p>
+                    <img src="images/saudi office.jpeg" alt="Saudi Arabia Office">
+                </div>
+                <div class="office">
+                    <h4>28 EXPORT - South Korea</h4>
+                    <p>330 Gangnam-daero, Gangnam-gu, Seoul, South Korea</p>
+                    <img src="images/korea office.jpeg" alt="South Korea Office">
+                </div>
+            </div>
+        </section>
+        <style>
+            .office-locations {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+            .office {
+                width: 48%;
+                margin-bottom: 20px;
+                background-color: #fff;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+            .office img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin-top: 10px;
+            }
+            @media screen and (max-width: 768px) {
+                .office {
+                    width: 100%;
+                }
+            }
+        </style>
+        </section>
+        <section id="certification">
+            <h2>OUR CERTIFICATIONS</h2>
+            <img src="images/certification.jpg" alt="Certifications">
+            <p>We take great pride in our array of certifications, which underscore the quality and reliability of our products and services. These certifications are a testament to our unwavering commitment to excellence and strict adherence to international standards. Our certifications, in collaboration with our partner companies, include:
+
+                - GACC Certificate
+                - TBS Certificate
+                - ISO 9001
+                - Halal Certificate
+                - Kosher Certificate
+                - FDA Certificate
+                
+                These credentials provide our clients with the assurance of our credibility and compliance with industry norms. We are dedicated to maintaining the highest standards in all aspects of our operations.</p>
+        </section>
+        <section id="special-note">
+            <h2>SPECIAL NOTE</h2>
+            <p>We are pleased to offer prospective clients the opportunity to visit our factory prior to the finalization of any payment arrangements. This visit allows you to gain firsthand insight into our operations, quality control measures, and manufacturing capabilities.
+
+                To facilitate and accommodate your visit, we require a commitment fee of $5,000. This fee is essential to ensure that we can dedicate the necessary resources and personnel to provide you with a comprehensive and informative tour of our facilities. The commitment fee will be deducted from your final payment should you proceed with our services.
+                
+                We believe that transparency and mutual understanding are vital to a successful partnership, and we look forward to the possibility of welcoming you to our facility.
+                
+                Please do not hesitate to reach out should you have any questions or require further information regarding the visit or any other aspect of our operations.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2019 28EXPORT. All rights reserved.</p>
+    </footer>
+</body>
+</html>
